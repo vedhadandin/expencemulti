@@ -1,0 +1,1 @@
+Expense Tracker PWA: multi-window (floating), notifications, edit/update cost. Host on GitHub Pages for PWA behavior.

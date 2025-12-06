@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Expense Tracker — Multiwindow PWA</title>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#3b82f6" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <img src="icon-192.png" class="logo" alt="logo"/>
+      <div>
+        <h1>Expense Tracker</h1>
+        <p class="muted">Track • Categorize • Report</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="installBtn" class="btn primary" style="display:none">Install</button>
+    </div>
+  </header>
+
+  <main id="app-shell">
+    <div id="views" class="views">
+      <section id="view-home" class="view active">
+        <div class="card">
+          <h2>Overview</h2>
+          <div class="summary-row">
+            <div class="summary-card"><div class="label">Total Spent</div><div id="totalSpent" class="value">₹0</div></div>
+            <div class="summary-card"><div class="label">This Month</div><div id="monthSpent" class="value">₹0</div></div>
+            <div class="summary-card"><div class="label">Budget</div><div id="budgetValue" class="value">₹0</div></div>
+          </div>
+          <div class="row">
+            <button class="btn" data-route="expenses">View Expenses</button>
+            <button class="btn" id="openQuickAdd">+ Quick Add</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-expenses" class="view">
+        <div class="card">
+          <div class="view-header">
+            <h2>Expenses</h2>
+            <div class="row">
+              <button id="addExpenseBtn" class="btn primary">+ Add Expense</button>
+              <button id="exportBtn" class="btn">Export CSV</button>
+            </div>
+          </div>
+          <div id="expensesList" class="list"></div>
+          <p id="noExpenses" class="muted">No expenses yet. Add one.</p>
+        </div>
+      </section>
+
+      <section id="view-reports" class="view">
+        <div class="card">
+          <h2>Reports</h2>
+          <canvas id="chart" width="500" height="160"></canvas>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="card">
+          <h2>Settings</h2>
+          <label>Monthly budget (₹):</label>
+          <input id="budgetInput" type="number" min="0" />
+          <div class="row">
+            <button id="saveBudget" class="btn primary">Save</button>
+            <button id="clearAll" class="btn">Clear Data</button>
+            <button id="notifyPermBtn" class="btn">Enable Notifications</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="float-container" class="float-container"></div>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn" data-route="home">Home</button>
+      <button class="nav-btn" data-route="expenses">Expenses</button>
+      <button class="nav-btn" data-route="reports">Reports</button>
+      <button class="nav-btn" data-route="settings">Settings</button>
+    </nav>
+  </main>
+
+  <footer class="foot"><small class="muted">Install on your phone for native-like experience.</small></footer>
+</div>
+
+<template id="floating-template">
+  <div class="floating-window draggable">
+    <div class="fw-header">
+      <strong class="fw-title">Window</strong>
+      <div class="fw-actions">
+        <button class="fw-minimize">—</button>
+        <button class="fw-close">✕</button>
+      </div>
+    </div>
+    <div class="fw-body"></div>
+  </div>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
